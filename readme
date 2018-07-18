@@ -1,0 +1,35 @@
+homebot
+
+setup:
+
+- copy files in `config/boot` into `boot` of sd drive so raspberry pi will copy into appropriate places
+- `ssh` turns ssh on
+- `wpa_supplicant` sets up raspberry pi to connect to wifi on boot
+
+find raspberry pi host:
+
+- `arp -a`
+
+export host for scripts
+
+- `export RPIHOST='192.168.1.167'`
+
+ssh:
+
+- `sh ssh`
+
+mount pi hard drive to `~/pi`
+
+- `sh sshfs`
+
+
+
+- script `sh ssh` to ssh into pi
+- script `sh sshfs` to mount pi filesystem into dir `~/pi`
+- script `sh dump` to dump contents of this dir into `~/pi/shushbot`
+
+to start demo:
+```
+sh ssh
+(cd ~/shushbot; python3.6 main.py)
+```

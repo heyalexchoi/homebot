@@ -1,0 +1,4 @@
+#!/bin/bash
+
+rm -r ~/pi/shushbot
+cp -r ../shushbot ~/pi/shushbot
