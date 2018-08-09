@@ -21,15 +21,3 @@ ssh:
 mount pi hard drive to `~/pi`
 
 - `sh sshfs`
-
-
-
-- script `sh ssh` to ssh into pi
-- script `sh sshfs` to mount pi filesystem into dir `~/pi`
-- script `sh dump` to dump contents of this dir into `~/pi/shushbot`
-
-to start demo:
-```
-sh ssh
-(cd ~/shushbot; python3.6 main.py)
-```
