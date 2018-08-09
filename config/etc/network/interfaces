@@ -1,0 +1,16 @@
+# copied from https://raspberrypi.stackexchange.com/questions/27475/wifi-disconnects-after-period-of-time-on-raspberry-pi-doesnt-reconnect
+# looked at a bunch of solutions to having rpi automatically reconnect wifi. this one looked reasonable to try.
+# cat ./config/etc/network/interfaces >> /etc/network/interfaces
+
+auto lo
+
+iface lo inet loopback
+iface eth0 inet dhcp
+
+allow-hotplug wlan0
+auto wlan0
+iface wlan0 inet manual
+wpa-roam /etc/wpa_supplicant/wpa_supplicant.conf
+
+iface home inet dhcp
+iface default inet dhcp
