@@ -1,18 +1,35 @@
 import schedule
 import time
+import logging
+
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+# create file handler which logs even debug messages
+fh = logging.FileHandler('homebot.main.log')
+fh.setLevel(logging.DEBUG)
+# create console handler
+ch = logging.StreamHandler()
+ch.setLevel(logging.DEBUG)
+# create formatter and add it to the handlers
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+ch.setFormatter(formatter)
+fh.setFormatter(formatter)
+# add the handlers to logger
+logger.addHandler(ch)
+logger.addHandler(fh)
 
 def ten_minute_job():
-    print(f"{get_time()} ten minute job starting")
+    logger.debug(f"{get_time()} ten minute job starting")
     ten_second_thing()
 
 def three_day_job():
-    print(f"{get_time()} three day job starting")
+    logger.debug(f"{get_time()} three day job starting")
     ten_second_thing()
 
 def ten_second_thing():
-    print(f"ten_second_thing starting: {get_time()}")
+    logger.debug(f"ten_second_thing starting: {get_time()}")
     time.sleep(10)
-    print(f"ten_second_thing ended: {get_time()}")
+    logger.debug(f"ten_second_thing ended: {get_time()}")
 
 def get_time():
     return time.asctime(time.localtime())
