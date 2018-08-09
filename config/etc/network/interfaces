@@ -1,6 +1,7 @@
 # copied from https://raspberrypi.stackexchange.com/questions/27475/wifi-disconnects-after-period-of-time-on-raspberry-pi-doesnt-reconnect
 # looked at a bunch of solutions to having rpi automatically reconnect wifi. this one looked reasonable to try.
-# cat ./config/etc/network/interfaces >> /etc/network/interfaces
+# sudo nano /etc/network/interfaces
+# can't pipe it in
 
 auto lo
 
