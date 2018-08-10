@@ -1,5 +1,6 @@
 import schedule
 import time
+from os import system
 import logging
 
 logger = logging.getLogger(__name__)
@@ -22,11 +23,16 @@ def ten_minute_job():
     logger.debug(f"{get_time()} ten minute job starting")
     ten_second_thing()
 
+def one_day_job():
+    logger.debug(f"{get_time()} one day job starting")
+    ten_second_thing()
+
 def three_day_job():
     logger.debug(f"{get_time()} three day job starting")
     ten_second_thing()
 
 def ten_second_thing():
+    logger.debug(f"able to ping google: {ping()}")
     logger.debug(f"ten_second_thing starting: {get_time()}")
     time.sleep(10)
     logger.debug(f"ten_second_thing ended: {get_time()}")
@@ -34,8 +40,13 @@ def ten_second_thing():
 def get_time():
     return time.asctime(time.localtime())
 
+def ping(hostname='www.google.com'):
+    return system(f'ping -c 1 {hostname} -t 2') == 0
+
 if __name__ == '__main__':
+    logger.debug('starting main...')
     schedule.every(10).minutes.do(ten_minute_job)
+    schedule.every(1).days.do(one_day_job)
     schedule.every(3).days.do(three_day_job)
     while True:
         schedule.run_pending()
