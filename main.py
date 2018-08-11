@@ -2,6 +2,7 @@ import schedule
 import time
 from os import system
 import logging
+from urllib.request import urlopen
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -32,7 +33,7 @@ def three_day_job():
     ten_second_thing()
 
 def ten_second_thing():
-    logger.debug(f"able to ping google: {ping()}")
+    logger.debug(f"internet looks like it works: {test_internet()}")
     logger.debug(f"ten_second_thing starting: {get_time()}")
     time.sleep(10)
     logger.debug(f"ten_second_thing ended: {get_time()}")
@@ -40,8 +41,12 @@ def ten_second_thing():
 def get_time():
     return time.asctime(time.localtime())
 
-def ping(hostname='www.google.com'):
-    return system(f'ping -c 1 {hostname} -t 2') == 0
+def test_internet():
+    try:
+        urlopen('http://www.google.com')
+    except:
+        return False
+    return True
 
 if __name__ == '__main__':
     logger.debug('starting main...')
