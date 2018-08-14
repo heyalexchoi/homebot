@@ -1,8 +1,9 @@
-import schedule
-import time
+from time import sleep
 from os import system
-import logging
 from urllib.request import urlopen
+import logging
+import schedule
+from gpiozero import LED
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -48,11 +49,25 @@ def test_internet():
         return False
     return True
 
+# pumping from tank on the ground to a vessel sitting on a chair - filled up 7 oz of water in about 35 seconds
+# with 14 plants drinking say... 2 ozs of water at a time... that's 28 ozs a go. try 140 seconds.
+power = LED(4) # use LED's simple on-off API - pin GPIO4 - https://gpiozero.readthedocs.io/en/stable/recipes.html
+def turn_on_for_n_seconds(seconds):
+    power.on()
+    sleep(seconds)
+    power.off()
+
+def water_plants():
+    logger.debug('watering plants...')
+    turn_on_for_n_seconds(140)
+    logger.debug('finished watering plants')
+
 if __name__ == '__main__':
     logger.debug('starting main...')
     schedule.every(10).minutes.do(ten_minute_job)
     schedule.every(1).days.do(one_day_job)
     schedule.every(3).days.do(three_day_job)
+    # schedule.every(2).days.do(water_plants)
     while True:
         schedule.run_pending()
         time.sleep(1)
