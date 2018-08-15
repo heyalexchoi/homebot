@@ -59,7 +59,7 @@ def turn_on_for_n_seconds(seconds):
 
 def water_plants():
     logger.debug('watering plants...')
-    turn_on_for_n_seconds(140)
+    turn_on_for_n_seconds(60)
     logger.debug('finished watering plants')
 
 if __name__ == '__main__':
