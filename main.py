@@ -23,15 +23,15 @@ logger.addHandler(fh)
 
 def ten_minute_job():
     logger.debug(f"{get_time()} ten minute job starting")
-    ten_second_thing()
+    # ten_second_thing()
 
 def one_day_job():
     logger.debug(f"{get_time()} one day job starting")
-    ten_second_thing()
+    # ten_second_thing()
 
 def three_day_job():
     logger.debug(f"{get_time()} three day job starting")
-    ten_second_thing()
+    # ten_second_thing()
 
 def ten_second_thing():
     logger.debug(f"internet looks like it works: {test_internet()}")
@@ -67,7 +67,7 @@ if __name__ == '__main__':
     schedule.every(10).minutes.do(ten_minute_job)
     schedule.every(1).days.do(one_day_job)
     schedule.every(3).days.do(three_day_job)
-    # schedule.every(2).days.do(water_plants)
+    schedule.every(2).days.do(water_plants)
     while True:
         schedule.run_pending()
         time.sleep(1)
